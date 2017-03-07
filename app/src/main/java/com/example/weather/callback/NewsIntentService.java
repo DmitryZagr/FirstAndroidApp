@@ -5,7 +5,6 @@ package com.example.weather.callback;
  */
 
 import android.app.IntentService;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
@@ -20,9 +19,6 @@ public class NewsIntentService extends IntentService {
     public final static String ACTION_NEWS = "action.NEWS";
 
     public final static String EXTRA_NEWS_CATEGORY = "extra.EXTRA_NEWS_CATEGORY";
-    public final static String EXTRA_NEWS_TITLE = "extra.EXTRA_NEWS_TITLE";
-    public final static String EXTRA_NEWS_DATE = "extra.EXTRA_NEWS_DATE";
-    public final static String EXTRA_NEWS_CONTENT = "extra.EXTRA_NEWS_CONTENT";
     public final static String EXTRA_NEWS_RESULT_RECEIVER = "extra.EXTRA_NEWS_RESULT_RECEIVER";
 
     public final static int RESULT_SUCCESS = 1;
@@ -48,13 +44,12 @@ public class NewsIntentService extends IntentService {
 
     private void handleActionNews(final String category, final ResultReceiver receiver) {
         final Bundle data = new Bundle();
+
         try {
             final News result = NewsProcessor.processNews(this, category);
+            if(receiver == null)
+                return;
             if (result != null ) {
-                data.putLong(EXTRA_NEWS_DATE, result.getDate());
-                data.putString(EXTRA_NEWS_CONTENT, result.getBody());
-                data.putString(EXTRA_NEWS_CATEGORY, category);
-                data.putString(EXTRA_NEWS_TITLE, result.getTitle());
                 receiver.send(RESULT_SUCCESS, data);
             } else {
                 data.putString(EXTRA_NEWS_RESULT, "result is null");

@@ -3,12 +3,9 @@ package com.example.weather.callback;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
-import ru.mail.weather.lib.News;
 
 /**
  * Created by admin on 07.03.17.
@@ -52,6 +49,6 @@ public class ServiceHelper {
     }
 
     interface NewsResultListener {
-        void onNewsResult(final boolean success, final Map<String, String> result);
+        void onNewsResult(final boolean success);
     }
 }

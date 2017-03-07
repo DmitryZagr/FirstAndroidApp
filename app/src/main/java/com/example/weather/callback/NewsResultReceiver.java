@@ -10,11 +10,6 @@ import android.os.ResultReceiver;
 
 import android.annotation.SuppressLint;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import ru.mail.weather.lib.News;
-
 @SuppressLint("ParcelCreator")
 public class NewsResultReceiver extends ResultReceiver {
     private final int requestId;
@@ -33,14 +28,7 @@ public class NewsResultReceiver extends ResultReceiver {
     protected void onReceiveResult(final int resultCode, final Bundle resultData) {
         if (mListener != null) {
             final boolean success = (resultCode == NewsIntentService.RESULT_SUCCESS);
-
-            Map<String, String> result = new HashMap<>();
-            result.put(NewsIntentService.EXTRA_NEWS_DATE, new Long(resultData.getLong(NewsIntentService.EXTRA_NEWS_DATE)).toString());
-            result.put(NewsIntentService.EXTRA_NEWS_CONTENT, resultData.getString(NewsIntentService.EXTRA_NEWS_CONTENT));
-            result.put(NewsIntentService.EXTRA_NEWS_CATEGORY, resultData.getString(NewsIntentService.EXTRA_NEWS_CATEGORY));
-            result.put(NewsIntentService.EXTRA_NEWS_TITLE, resultData.getString(NewsIntentService.EXTRA_NEWS_TITLE));
-
-            mListener.onNewsResult(success, result);
+            mListener.onNewsResult(success);
         }
         ServiceHelper.getInstance().removeListener(requestId);
     }

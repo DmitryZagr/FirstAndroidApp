@@ -26,9 +26,11 @@ public class NewsProcessor {
 
         }
 
-        Storage storage = Storage.getInstance(context);
-        storage.saveCurrentTopic(text);
-        storage.saveNews(news);
+        if(news != null) {
+            Storage storage = Storage.getInstance(context);
+            storage.saveCurrentTopic(text);
+            storage.saveNews(news);
+        }
 
         return news;
     }
