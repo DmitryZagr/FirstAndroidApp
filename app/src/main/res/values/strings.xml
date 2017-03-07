@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">News</string>
+    <string name="update_in_background">Обновлять в фоне</string>
+    <string name="not_update_in_background">Не обновлять в фоне</string>
+</resources>
