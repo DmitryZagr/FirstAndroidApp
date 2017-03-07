@@ -117,13 +117,11 @@ public class MainActivity extends AppCompatActivity implements  ServiceHelper.Ne
         findViewById(R.id.btn_not_update_in_background).setOnClickListener(onNotUpdateInBackground);
     }
 
-
     @Override
     protected void onStop() {
         ServiceHelper.getInstance().removeListener(requestId.get());
         super.onStop();
     }
-
 
     @Override
     public void onNewsResult(boolean success) {
